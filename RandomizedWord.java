@@ -5,16 +5,15 @@ public class RandomizedWord {
     public static int length() {
         wordLen = (int) ((Math.random() * 4) + 2);
 
-
         return wordLen;
     }
 
 
-    public static String random() {
+    public static String getRandomWord(int length) {
         randomWord = "";
         String alphabet = "abcdefghijklmnopqrstuwxyz";
-        for (int i = 0; i < wordLen; i++) {
-            int num = (int) (Math.random() * 26);
+        for (int i = 0; i < length; i++) {
+            int num = (int) (Math.random() * 24);;
             String character = alphabet.substring(num, (num + 1));
             randomWord = randomWord + character;
         }
@@ -51,6 +50,7 @@ public class RandomizedWord {
     public static String hint(String userWord) {
         String alphabet = "abcdefghijklmnopqrstuwxyz";
         StringBuilder notGuessed = new StringBuilder();
+        String hints= new StringBuilder();
         int h = 0;
         while (h <= wordLen - 1) {
             int count = 0;
@@ -69,14 +69,15 @@ public class RandomizedWord {
             h++;
         }
 
-        int ind= (int) (Math.random()*(notGuessed.length()));
-        for (int s=0;s<notGuessed.length();s++)
+        int ind= (int) (Math.random()*(notGuessed.length()-1));
+        for (int s=0;s<notGuessed.length()-1;s++)
         {
             String a = notGuessed.substring(s, (s + 1));
             if (notGuessed.indexOf(a)==ind)
             {
-                return "the index of the missing letter in your word in the alphabet is: " + (alphabet.indexOf(a)+1);
+                hints.append("the index of the missing letter in your word in the alphabet is: ").append(alphabet.indexOf(a) + 1);
             }
         }
+        return hints;
     }
 }

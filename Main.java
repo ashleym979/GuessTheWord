@@ -13,16 +13,29 @@ public class Main {
         System.out.println("If you ever need a hint type HINT");
         System.out.println(" ");
 
-        String word= RandomizedWord.random();
-
-        System.out.println("Your word is " +RandomizedWord.length()+" letters long");
+        int length= RandomizedWord.length();
+        String word= RandomizedWord.getRandomWord(length);
+        System.out.println(word);
+        System.out.println("Your word is " + length +" letters long");
 
         String userGuess="";
+        String backUp=" ";
         while (!(userGuess.equals(word)))
         {
             System.out.println("Make your guess: ");
+
             userGuess= scan.nextLine();
-            System.out.println(RandomizedWord.check(userGuess));
+            if (!(userGuess.equals("HINT")))
+            {
+                backUp=userGuess;
+            }
+            if (userGuess.equals("HINT"))
+            {
+                System.out.println(RandomizedWord.hint(backUp));
+            }else
+            {
+                System.out.println(RandomizedWord.check(userGuess));
+            }
         }
 
         System.out.println("Congratulations! You got the word correct!");
