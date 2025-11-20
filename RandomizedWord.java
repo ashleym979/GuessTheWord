@@ -47,21 +47,21 @@ public class RandomizedWord {
         return checking.toString();
     }
 
-    public static String hint(String userWord) {
+    public static String hint(String userWord, int length) {
         String alphabet = "abcdefghijklmnopqrstuwxyz";
         StringBuilder notGuessed = new StringBuilder();
-        String hints= new StringBuilder();
+        String hints= "";
         int h = 0;
-        while (h <= wordLen - 1) {
+        while (h <= length - 1) {
             int count = 0;
             String b = userWord.substring(h, (h + 1));
             for (int i = 0; i < randomWord.length(); i++) {
                 String a = randomWord.substring(i, (i + 1));
-                if (!(a.equals(b)))
-                {
+                if (b.equals(a)) {
+                } else {
                     count++;
                 }
-                if (count==wordLen)
+                if (count==length)
                 {
                     notGuessed.append(a);
                 }
@@ -72,10 +72,10 @@ public class RandomizedWord {
         int ind= (int) (Math.random()*(notGuessed.length()-1));
         for (int s=0;s<notGuessed.length()-1;s++)
         {
-            String a = notGuessed.substring(s, (s + 1));
-            if (notGuessed.indexOf(a)==ind)
+            String k = notGuessed.substring(s, (s + 1));
+            if ((notGuessed.indexOf(k))==ind)
             {
-                hints.append("the index of the missing letter in your word in the alphabet is: ").append(alphabet.indexOf(a) + 1);
+                hints=("the index of the missing letter in your word in the alphabet is: "+(alphabet.indexOf(k) + 1));
             }
         }
         return hints;

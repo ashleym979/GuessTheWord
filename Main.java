@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -19,19 +20,23 @@ public class Main {
         System.out.println("Your word is " + length +" letters long");
 
         String userGuess="";
-        String backUp=" ";
+        String backUp="";
         while (!(userGuess.equals(word)))
         {
             System.out.println("Make your guess: ");
 
             userGuess= scan.nextLine();
-            if (!(userGuess.equals("HINT")))
+            if (!("HINT".equals(userGuess)))
             {
                 backUp=userGuess;
             }
-            if (userGuess.equals("HINT"))
+
+            System.out.println(backUp);
+            System.out.println(userGuess);
+
+            if ("HINT".equals(userGuess))
             {
-                System.out.println(RandomizedWord.hint(backUp));
+                System.out.println(RandomizedWord.hint(backUp, length));
             }else
             {
                 System.out.println(RandomizedWord.check(userGuess));
