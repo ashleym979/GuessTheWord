@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -26,21 +25,21 @@ public class Main {
             System.out.println("Make your guess: ");
 
             userGuess= scan.nextLine();
-            if (!("HINT".equals(userGuess)))
+            if ("HINT".equals(userGuess))
             {
+                System.out.println("in else statement");
+                System.out.println(RandomizedWord.hint(backUp, length));
+            }
+            else
+            {
+                System.out.println("in if statement");
                 backUp=userGuess;
+                System.out.println(RandomizedWord.check(userGuess));
             }
 
             System.out.println(backUp);
             System.out.println(userGuess);
 
-            if ("HINT".equals(userGuess))
-            {
-                System.out.println(RandomizedWord.hint(backUp, length));
-            }else
-            {
-                System.out.println(RandomizedWord.check(userGuess));
-            }
         }
 
         System.out.println("Congratulations! You got the word correct!");

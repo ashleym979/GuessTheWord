@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class RandomizedWord {
     private static int wordLen;
     private static String randomWord;
@@ -51,31 +53,22 @@ public class RandomizedWord {
         String alphabet = "abcdefghijklmnopqrstuwxyz";
         StringBuilder notGuessed = new StringBuilder();
         String hints= "";
-        int h = 0;
-        while (h <= length - 1) {
-            int count = 0;
-            String b = userWord.substring(h, (h + 1));
-            for (int i = 0; i < randomWord.length(); i++) {
-                String a = randomWord.substring(i, (i + 1));
-                if (b.equals(a)) {
-                } else {
-                    count++;
-                }
-                if (count==length)
-                {
-                    notGuessed.append(a);
-                }
+        for (int i = 0; i < length(); i++) {
+            String c = randomWord.substring(i, i+1);
+
+            if (!userWord.contains(c)) {
+                notGuessed.append(c);
             }
-            h++;
         }
 
-        int ind= (int) (Math.random()*(notGuessed.length()-1));
-        for (int s=0;s<notGuessed.length()-1;s++)
+        int ind= (int) (Math.random()*(length-1));
+        for (int s=0;s<(notGuessed.length()-1);s++)
         {
             String k = notGuessed.substring(s, (s + 1));
             if ((notGuessed.indexOf(k))==ind)
             {
                 hints=("the index of the missing letter in your word in the alphabet is: "+(alphabet.indexOf(k) + 1));
+
             }
         }
         return hints;
