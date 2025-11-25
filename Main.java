@@ -19,13 +19,14 @@ public class Main {
         System.out.println("Your word is " + length +" letters long");
 
         String userGuess="";
+        String hint="HINT";
         String backUp="";
         while (!(userGuess.equals(word)))
         {
             System.out.println("Make your guess: ");
 
             userGuess= scan.nextLine();
-            if ("HINT".equals(userGuess))
+            if (hint.equals(userGuess))
             {
                 System.out.println("in else statement");
                 System.out.println(RandomizedWord.hint(backUp, length));

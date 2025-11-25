@@ -53,22 +53,22 @@ public class RandomizedWord {
         String alphabet = "abcdefghijklmnopqrstuwxyz";
         StringBuilder notGuessed = new StringBuilder();
         String hints= "";
-        for (int i = 0; i < length(); i++) {
+        for (int i = 0; i < randomWord.length(); i++) {
             String c = randomWord.substring(i, i+1);
 
-            if (!userWord.contains(c)) {
+            if (userWord.indexOf(c) == -1) {
                 notGuessed.append(c);
             }
         }
 
-        int ind= (int) (Math.random()*(length-1));
-        for (int s=0;s<(notGuessed.length()-1);s++)
+
+        int ind= (int) (Math.random()*(notGuessed.length()-1));
+        for (int s=0;s<notGuessed.length();s++)
         {
             String k = notGuessed.substring(s, (s + 1));
             if ((notGuessed.indexOf(k))==ind)
             {
                 hints=("the index of the missing letter in your word in the alphabet is: "+(alphabet.indexOf(k) + 1));
-
             }
         }
         return hints;
